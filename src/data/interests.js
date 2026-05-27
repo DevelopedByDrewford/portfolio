@@ -2,10 +2,10 @@ const interests = [
     {
         id: 1,
         name: 'Digital Photography',
-        link: 'https://www.instagram.com/developedbydrewford/',
+        link: 'https://links.drewford.dev',
         img: 'https://i.imgur.com/o3TGB2S.jpg',
         description: 'Learning photography with my Sony ZV1 became a passion and using my Canon RP has only solidified it. Taking daily pictures has helped me discover hidden gems both at home and during my travels, capturing everything from small details to big moments. It’s been amazing to find beauty in the ordinary, whether I’m at home or exploring somewhere new. Each photo is a new opportunity to see the world differently.',
-        linkText: 'Follow me on Instagram'
+        linkText: 'Check out my photography page'
     },
     {
         id: 2,
