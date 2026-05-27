@@ -79,8 +79,8 @@ function Home() {
         </h1>
         <p className="hero__lede">
           I build commerce, search, and gaming experiences on the web —
-          currently shipping at Athos Commerce. I care about clean code,
-          interactive teams, and design that respects the user.
+          currently shipping at Athos Commerce. I care about CI/CD,
+          engaging teams, and design that respects the user.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href={AndrewCookResume} download>
