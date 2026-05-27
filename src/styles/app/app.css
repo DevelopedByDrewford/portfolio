@@ -810,6 +810,151 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
   color: var(--muted);
 }
 
+/* ─── AVATAR MODAL ─────────────────────────────────────────────────────────── */
+.profile__avatar--btn {
+  /* reset button chrome, keep existing .profile__avatar shape/hover */
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  cursor: pointer;
+}
+.profile__avatar--btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.avatar-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.74);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  animation: modal-in .2s ease;
+}
+
+.avatar-modal {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(var(--accent-rgb), 0.12),
+    0 32px 80px rgba(0, 0, 0, 0.6);
+  max-width: 360px;
+  width: 100%;
+  animation: avatar-modal-pop .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes avatar-modal-pop {
+  from { transform: scale(0.86) translateY(20px); opacity: 0; }
+  to   { transform: scale(1)    translateY(0);    opacity: 1; }
+}
+
+.avatar-modal__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: var(--r-sm);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  z-index: 2;
+  transition: background .18s, color .18s;
+}
+.avatar-modal__close:hover {
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+}
+
+.avatar-modal__banner {
+  height: 88px;
+  background:
+    linear-gradient(135deg,
+      rgba(var(--accent-rgb), 0.42) 0%,
+      rgba(var(--accent-rgb), 0.14) 55%,
+      transparent 100%),
+    var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+.avatar-modal__banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 100% at 10% 60%, rgba(var(--accent-rgb), 0.22), transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 10%,  rgba(var(--accent-rgb), 0.14), transparent 50%);
+}
+
+.avatar-modal__avatar-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: -48px;
+  position: relative;
+  z-index: 1;
+}
+
+.avatar-modal__avatar-img {
+  width: 96px; height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--surface);
+  box-shadow:
+    0 0 0 2.5px var(--accent),
+    0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.avatar-modal__body {
+  padding: var(--space-3) var(--space-5) var(--space-5);
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center;
+  gap: 10px;
+}
+
+.avatar-modal__name {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-top: 2px;
+}
+
+.avatar-modal__meta {
+  display: flex; flex-direction: column; gap: 4px;
+}
+.avatar-modal__role  { font-size: 14px; color: var(--muted); }
+.avatar-modal__location {
+  font-size: 13px; color: var(--muted-2);
+  display: inline-flex; align-items: center; gap: 4px;
+  justify-content: center;
+}
+
+.avatar-modal__divider {
+  width: 36px; height: 1px;
+  background: var(--border);
+  margin: 2px 0;
+}
+
+.avatar-modal__bio {
+  font-size: 13.5px; line-height: 1.65;
+  color: var(--muted);
+  max-width: 38ch;
+}
+.avatar-modal__bio a { color: var(--accent); border-bottom: 1px solid transparent; transition: border-color .18s; }
+.avatar-modal__bio a:hover { border-bottom-color: var(--accent); }
+
+.avatar-modal__socials {
+  display: flex; gap: 6px; justify-content: center; flex-wrap: wrap;
+  margin-top: 2px;
+}
+
 /* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
 
 /* Backdrop — hidden everywhere by default */
