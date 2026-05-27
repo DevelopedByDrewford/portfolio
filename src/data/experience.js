@@ -2,7 +2,7 @@ const experience = [
   {
     id: 'athos',
     company: 'Athos Commerce',
-    title: 'Software Engineer',
+    title: 'Software Engineer II',
     period: 'Jul 2025 — Present',
     location: 'San Antonio, TX · Remote',
     url: 'https://athoscommerce.com',
@@ -21,7 +21,7 @@ const experience = [
   {
     id: 'searchspring',
     company: 'Searchspring',
-    title: 'Software Engineer',
+    title: 'Software Engineer I',
     period: 'Feb 2024 — Jul 2025',
     location: 'San Antonio, TX · Remote',
     url: 'https://searchspring.com',
