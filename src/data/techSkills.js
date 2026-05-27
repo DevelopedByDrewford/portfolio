@@ -38,7 +38,7 @@ const skills = [
   { id: 35, name: 'Webpack',       img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/webpack-colored.svg' },
   { id: 36, name: 'Vite',          img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/vite-colored.svg' },
   // Tools & Platforms
-  { id: 37, name: 'VS Code',       img: 'https://cdn.simpleicons.org/visualstudiocode' },
+  { id: 37, name: 'VS Code',       img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Visual_Studio_Code_1.35_icon.svg/3840px-Visual_Studio_Code_1.35_icon.svg.png' },
   { id: 38, name: 'Docker',        img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/docker-colored.svg' },
   { id: 39, name: 'Postman',       img: 'https://cdn.simpleicons.org/postman' },
   { id: 40, name: 'Jira',          img: 'https://cdn.simpleicons.org/jira' },
