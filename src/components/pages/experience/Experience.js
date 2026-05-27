@@ -1,8 +1,75 @@
+import { useState, useEffect, useCallback } from 'react'
 import Icon from '../../components/Icon'
 import SkillChip from '../../components/SkillChip'
 import experience from '../../../data/experience'
 
-function ExperienceCard({ job, isLast }) {
+function ImageModal({ images, startIndex, onClose }) {
+  const [idx, setIdx] = useState(startIndex)
+
+  const prev = useCallback(() => setIdx(i => (i - 1 + images.length) % images.length), [images.length])
+  const next = useCallback(() => setIdx(i => (i + 1) % images.length), [images.length])
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, prev, next])
+
+  const img = images[idx]
+  const multi = images.length > 1
+
+  return (
+    <div className="img-modal-backdrop" onClick={onClose}>
+      <div className="img-modal" onClick={e => e.stopPropagation()}>
+        <div className="img-modal__stage">
+          <button className="img-modal__close" onClick={onClose} aria-label="Close">
+            <Icon name="close" size={15} />
+          </button>
+
+          {multi && (
+            <button className="img-modal__nav img-modal__nav--prev" onClick={prev} aria-label="Previous image">
+              <Icon name="chevL" size={18} />
+            </button>
+          )}
+
+          <img src={img.src} alt={img.alt} />
+
+          {multi && (
+            <button className="img-modal__nav img-modal__nav--next" onClick={next} aria-label="Next image">
+              <Icon name="chevR" size={18} />
+            </button>
+          )}
+        </div>
+
+        <div className="img-modal__footer">
+          <span className="img-modal__label">{img.alt}</span>
+          {multi && (
+            <div className="img-modal__dots">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  className={`img-modal__dot${i === idx ? ' is-active' : ''}`}
+                  onClick={() => setIdx(i)}
+                  aria-label={`Go to image ${i + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ExperienceCard({ job, isLast, onImageClick }) {
   return (
     <article className="job" id={`job-${job.id}`}>
       <div className="job__rail">
@@ -39,10 +106,18 @@ function ExperienceCard({ job, isLast }) {
         {job.images && job.images.length > 0 && (
           <div className="job__gallery">
             {job.images.map((img, i) => (
-              <div key={i} className="job__thumb">
+              <button
+                key={i}
+                className="job__thumb"
+                onClick={() => onImageClick(job.images, i)}
+                aria-label={`View ${img.alt}`}
+              >
                 <img src={img.src} alt={img.alt} loading="lazy" />
                 <span className="job__thumb-label">{img.alt}</span>
-              </div>
+                <span className="job__thumb-zoom" aria-hidden="true">
+                  <Icon name="expand" size={13} />
+                </span>
+              </button>
             ))}
           </div>
         )}
@@ -52,6 +127,11 @@ function ExperienceCard({ job, isLast }) {
 }
 
 function Experience() {
+  const [modal, setModal] = useState(null)
+
+  const openModal = useCallback((images, index) => setModal({ images, index }), [])
+  const closeModal = useCallback(() => setModal(null), [])
+
   return (
     <section className="page">
       <header className="page__head">
@@ -64,9 +144,17 @@ function Experience() {
             key={job.id}
             job={job}
             isLast={i === experience.length - 1}
+            onImageClick={openModal}
           />
         ))}
       </div>
+      {modal && (
+        <ImageModal
+          images={modal.images}
+          startIndex={modal.index}
+          onClose={closeModal}
+        />
+      )}
     </section>
   )
 }

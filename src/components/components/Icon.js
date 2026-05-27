@@ -100,6 +100,21 @@ function Icon({ name, size = 18 }) {
           <polyline points="9 18 15 12 9 6" />
         </svg>
       );
+    case "chevL":
+      return (
+        <svg {...props}>
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      );
+    case "expand":
+      return (
+        <svg {...props}>
+          <polyline points="15 3 21 3 21 9" />
+          <polyline points="9 21 3 21 3 15" />
+          <line x1="21" y1="3" x2="14" y2="10" />
+          <line x1="3" y1="21" x2="10" y2="14" />
+        </svg>
+      );
     case "menu":
       return (
         <svg {...props}>
