@@ -5,14 +5,6 @@ import Sidebar from './Sidebar.js'
 import Icon from '../components/components/Icon'
 
 import '../styles/app/app.css'
-import '../styles/app/sidebar.css'
-import '../styles/pages/home.css'
-import '../styles/components/card.css'
-import '../styles/components/utility.css'
-import '../styles/components/mobile.css'
-import '../styles/pages/experience.css'
-import '../styles/pages/projects.css'
-import '../styles/pages/interests.css'
 
 function App() {
   const scroller = useRef(null)

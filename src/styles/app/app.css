@@ -9,7 +9,6 @@
   --bg:         oklch(0.16 0.006 60);
   --bg-2:       oklch(0.20 0.008 60);
   --surface:    oklch(0.22 0.008 60);
-  --surface-2:  oklch(0.26 0.008 60);
   --border:     oklch(0.32 0.008 60 / 0.55);
   --border-2:   oklch(0.42 0.008 60 / 0.4);
   --text:       oklch(0.96 0.005 80);
@@ -19,10 +18,8 @@
   --r-sm: 8px;
   --r-md: 12px;
   --r-lg: 18px;
-  --r-xl: 24px;
   --r-pill: 999px;
 
-  --space-1: 6px;
   --space-2: 10px;
   --space-3: 14px;
   --space-4: 20px;
@@ -286,10 +283,6 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
   line-height: 1.02;
   text-wrap: balance;
 }
-.hero__name {
-  color: var(--accent);
-  font-weight: 700;
-}
 .hero__name--script {
   font-family: var(--font-script);
   color: var(--accent);
@@ -381,6 +374,7 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
   font-size: 13px;
   color: var(--text);
   transition: all .18s;
+  cursor: default;
 }
 .chip:hover { border-color: var(--accent); color: var(--accent); }
 .chip img { width: 16px; height: 16px; object-fit: contain; }

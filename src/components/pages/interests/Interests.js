@@ -28,7 +28,7 @@ function Interests() {
     <section className="page">
       <header className="page__head">
         <h1 className="page__title">Interests</h1>
-        <p className="page__lede">Outside the editor — the things that recharge me and shape how I think about craft.</p>
+        <p className="page__lede">Outside of coding — the things that recharge me and shape how I think about craft.</p>
       </header>
       <div className="interests">
         {interests.map(item => <InterestCard key={item.id} item={item} />)}
