@@ -28,6 +28,23 @@ const skills = [
   { id: 27, name: 'Copilot',        img: 'https://cdn.simpleicons.org/githubcopilot' },
   { id: 28, name: 'Cyberduck',      img: 'https://cdn.cyberduck.io/img/cyberduck-icon-384.png' },
   { id: 29, name: 'Athos Commerce', img: 'https://athoscommerce.com/wp-content/uploads/2025/08/Athos-logo-scaled.png' },
+  // Languages
+  { id: 30, name: 'SQL',           img: 'https://cdn.simpleicons.org/mysql' },
+  { id: 31, name: 'Bash',          img: 'https://cdn.simpleicons.org/gnubash' },
+  // Frameworks & Web Dev
+  { id: 32, name: 'GraphQL',       img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/graphql-colored.svg' },
+  { id: 33, name: 'REST APIs',     img: 'https://cdn.simpleicons.org/swagger' },
+  { id: 34, name: 'Cypress',       img: 'https://cdn.simpleicons.org/cypress' },
+  { id: 35, name: 'Webpack',       img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/webpack-colored.svg' },
+  { id: 36, name: 'Vite',          img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/vite-colored.svg' },
+  // Tools & Platforms
+  { id: 37, name: 'VS Code',       img: 'https://cdn.simpleicons.org/visualstudiocode' },
+  { id: 38, name: 'Docker',        img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/docker-colored.svg' },
+  { id: 39, name: 'Postman',       img: 'https://cdn.simpleicons.org/postman' },
+  { id: 40, name: 'Jira',          img: 'https://cdn.simpleicons.org/jira' },
+  { id: 41, name: 'Notion',        img: 'https://cdn.simpleicons.org/notion' },
+  { id: 42, name: 'Stripe',        img: 'https://cdn.simpleicons.org/stripe' },
+  { id: 43, name: 'CI/CD',         img: 'https://cdn.simpleicons.org/githubactions' },
 ];
 
 export default skills;

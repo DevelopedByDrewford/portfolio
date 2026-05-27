@@ -300,15 +300,6 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
 .hero__name--script.is-cycling {
   opacity: 0.85;
 }
-.hero__name--script.is-settled {
-  animation: font-settle 0.4s ease-out forwards;
-}
-
-@keyframes font-settle {
-  0%   { opacity: 0.65; letter-spacing: 0.06em; }
-  55%  { opacity: 1;    letter-spacing: -0.01em; }
-  100% { opacity: 1;    letter-spacing: 0;       }
-}
 .hero__title em { font-style: italic; font-family: var(--font-serif); font-weight: 400; color: var(--accent); }
 
 .hero__lede {
