@@ -1,57 +1,40 @@
-import { useEffect } from 'react'
-
-import MobileButton from '../../../app/MobileButton'
-
+import Icon from '../../components/Icon'
 import interests from '../../../data/interests'
 
+function InterestCard({ item }) {
+  return (
+    <article className="interest">
+      <div className="interest__media">
+        <img src={item.img} alt={item.name} loading="lazy" />
+      </div>
+      <div className="interest__body">
+        <h3 className="interest__title">{item.name}</h3>
+        <p className="interest__desc">{item.description}</p>
+        <a
+          className="interest__link"
+          href={item.link}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {item.linkText} <Icon name="arrow" size={14} />
+        </a>
+      </div>
+    </article>
+  )
+}
+
 function Interests() {
-
-    useEffect(() => {
-        window.scrollTo({top: 0, left: 0})
-      }, [])
-
-    return(
-        <div className='page interests'>
-
-            <MobileButton />
-
-            <h2 className='page__title'>
-                Interests
-            </h2>
-
-            {interests.map((intObj) => {
-                return(
-                    <div className='card' key={intObj.id}>
-                        {/* Image */}
-                        <div className='card__image--interest-containr'>
-
-                        
-                            <img className='card__image' src={intObj.img} alt={intObj.name}/>
-                        </div>
-                        
-                        {/* Name */}
-                        <div className='card__title'>{intObj.name}</div>
-
-                        {/* Details */}
-                        {intObj.description}
-
-                        <br /><br />
-
-                        {/* Link text */}
-                        <div className='flex-center'>
-                            <a className='interests__social-btn' href={intObj.link} target='_blank'>
-                                <span class="interests__social-btn--shadow"></span>
-                                <span class="interests__social-btn--edge"></span>
-                                <span class="interests__social-btn--front interests__social-btn--text"> {intObj.linkText}</span>
-                            </a>
-                        </div>
-
-                    </div>
-                )
-            })}
-
-        </div>
-    )
+  return (
+    <section className="page">
+      <header className="page__head">
+        <h1 className="page__title">Interests</h1>
+        <p className="page__lede">Outside the editor — the things that recharge me and shape how I think about craft.</p>
+      </header>
+      <div className="interests">
+        {interests.map(item => <InterestCard key={item.id} item={item} />)}
+      </div>
+    </section>
+  )
 }
 
 export default Interests

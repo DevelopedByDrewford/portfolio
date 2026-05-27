@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import Sidebar from './Sidebar.js'
+import Icon from '../components/components/Icon'
 
 import '../styles/app/app.css'
 import '../styles/app/sidebar.css'
@@ -13,60 +14,61 @@ import '../styles/pages/experience.css'
 import '../styles/pages/projects.css'
 import '../styles/pages/interests.css'
 
-const URL = 'https://api.quotable.io/quotes/random?maxLength=50'
-
 function App() {
+  const scroller = useRef(null)
+  const location = useLocation()
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
-    // Window Size
-    const [windowSize, setWindowSize] = useState({
-        width: window.innerWidth,
-        height: window.innerHeight
-    })
+  const closeSidebar = useCallback(() => setSidebarOpen(false), [])
 
-    // Quote API
-    const [quote, setQuote] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const [error, setError] = useState(null)
+  // Scroll main content to top + close sidebar on route change
+  useEffect(() => {
+    if (scroller.current) scroller.current.scrollTop = 0
+    setSidebarOpen(false)
+  }, [location.pathname])
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch(URL);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setQuote(data[0]); // Assuming the response is an array of quotes
-                setLoading(false);
-            } catch (error) {
-                setError(error.message);
-                setLoading(false);
-            }
-        };
+  // Lock body scroll while drawer is open
+  useEffect(() => {
+    document.body.style.overflow = sidebarOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [sidebarOpen])
 
+  // Escape key closes the drawer
+  useEffect(() => {
+    if (!sidebarOpen) return
+    const onKey = (e) => { if (e.key === 'Escape') closeSidebar() }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [sidebarOpen, closeSidebar])
 
+  return (
+    <div className="shell">
 
-        fetchData();
-    }, [])
+      {/* Mobile-only top bar */}
+      <header className="mobile-header">
+        <NavLink to="/" className="mobile-header__brand" aria-label="Home">
+          <span className="signature signature--script">DEVELOPED BY DREWFORD</span>
+        </NavLink>
+        <button
+          className="mobile-header__toggle"
+          onClick={() => setSidebarOpen(true)}
+          aria-label="Open navigation"
+          aria-expanded={sidebarOpen}
+        >
+          <Icon name="menu" size={22} />
+        </button>
+      </header>
 
-    return (
-        <div className='app'>
+      <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
 
-            <div className='app__content'>
-
-                {windowSize.width > 1000 ? <Sidebar /> : ''}
-
-                <Outlet context={{
-                    quoteObj: [quote, setQuote],
-                    errorObj: [error, setError],
-                    loadingObj: [loading, setLoading]
-                }}
-                    />
-
-            </div>
-
+      <main className="main" ref={scroller}>
+        <div className="main__inner">
+          <Outlet />
         </div>
-    )
+      </main>
+
+    </div>
+  )
 }
 
 export default App

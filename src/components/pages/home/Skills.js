@@ -4,7 +4,7 @@ function Skills() {
 
     const languages = ['Javascript', 'Typescript', 'Python', 'Groovy Script', 'PostgreSQL', 'HTML 5', 'CSS 3'];
     const webDev = ['Node.js', 'React.js', 'Preact', 'Next.js', 'Sassy CSS', 'Tailwind CSS', 'Netlify', 'Render']
-    const tools = ['Git', 'AWS', 'ChatGPT', 'Figma', 'Shopify', 'Magento', 'BigCommerce'] 
+    const tools = ['Git', 'AWS', 'Claude', 'Figma', 'Shopify', 'Magento', 'BigCommerce']
 
     const langArray = skills.filter(skill =>
       languages.includes(skill.name)
