@@ -21,7 +21,13 @@ const skills = [
   { id: 20, name: 'Shopify',     img: 'https://i.imgur.com/Hq6wS9Q.png' },
   { id: 21, name: 'Magento',     img: 'https://i.imgur.com/dCcbpii.png' },
   { id: 22, name: 'BigCommerce', img: 'https://i.imgur.com/82GwWzj.png' },
-  { id: 23, name: 'Firebase',   img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/firebase-colored.svg' },
+  { id: 23, name: 'Firebase',       img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/firebase-colored.svg' },
+  { id: 24, name: 'GitHub',         img: 'https://cdn.simpleicons.org/github' },
+  { id: 25, name: 'Asana',          img: 'https://cdn.simpleicons.org/asana' },
+  { id: 26, name: 'Zendesk',        img: 'https://cdn.simpleicons.org/zendesk' },
+  { id: 27, name: 'Copilot',        img: 'https://cdn.simpleicons.org/githubcopilot' },
+  { id: 28, name: 'Cyberduck',      img: 'https://cdn.cyberduck.io/img/cyberduck-icon-384.png' },
+  { id: 29, name: 'Athos Commerce', img: 'https://athoscommerce.com/wp-content/uploads/2025/08/Athos-logo-scaled.png' },
 ];
 
 export default skills;
