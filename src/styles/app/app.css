@@ -592,6 +592,100 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
 }
 .interest__link:hover { border-bottom-color: var(--accent); gap: 10px; }
 
+/* ─── INTEREST: READ-MORE BUTTON ──────────────────────────────────────────── */
+.interest__read-more {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent);
+  opacity: 0.7;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity .18s;
+}
+.interest__read-more:hover { opacity: 1; }
+
+/* ─── INTEREST MODAL ───────────────────────────────────────────────────────── */
+.interest-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  animation: modal-in .2s ease;
+}
+@keyframes modal-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.interest-modal {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.55);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+  animation: modal-up .22s ease;
+}
+@keyframes modal-up {
+  from { transform: translateY(14px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.interest-modal__close {
+  position: absolute;
+  top: 10px; right: 10px;
+  width: 30px; height: 30px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(4px);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  z-index: 1;
+  transition: background .18s, color .18s;
+}
+.interest-modal__close:hover { background: rgba(0,0,0,0.65); color: var(--accent); }
+
+.interest-modal__media {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--bg-2);
+}
+.interest-modal__media img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.interest-modal__body {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  display: flex; flex-direction: column;
+  gap: var(--space-3);
+}
+.interest-modal__title {
+  font-size: 22px; font-weight: 700;
+  letter-spacing: -0.02em; line-height: 1.2;
+}
+.interest-modal__desc {
+  font-size: 15px; line-height: 1.7;
+  color: var(--muted);
+}
+
 /* ─── RESPONSIVE ───────────────────────────────────────────────────────────── */
 
 /* Backdrop — hidden everywhere by default */
@@ -607,6 +701,72 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
 /* Mobile header — hidden on desktop */
 .mobile-header {
   display: none;
+}
+
+/* ── Wide desktop: 1280px+ ──────────────────────────────────────────────── */
+@media (min-width: 1280px) {
+  .main__inner {
+    max-width: 1040px;
+  }
+
+  /* Wider project thumbnail */
+  .proj {
+    grid-template-columns: 340px 1fr;
+  }
+
+  /* 3-col interests */
+  .interests {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Interest cards: taller image, tighter body — match project card proportions */
+  .interest__media {
+    aspect-ratio: 4/3;
+  }
+  .interest__body {
+    padding: 12px var(--space-4);
+    gap: 6px;
+  }
+  .interest__desc {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+  }
+}
+
+/* ── Extra-wide: 1600px+ ────────────────────────────────────────────────── */
+@media (min-width: 1600px) {
+  .main__inner {
+    max-width: 1200px;
+  }
+
+  /* 2-column project grid — each card stacks internally */
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+  .proj {
+    grid-template-columns: 1fr;
+  }
+  .proj__media {
+    aspect-ratio: 16/9;
+    min-height: 0;
+  }
+
+  /* 4-col interests (8 items → 2 clean rows) */
+  .interests {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Even tighter at 4-col — 3-line clamp, compact body */
+  .interest__body {
+    padding: 10px 14px;
+  }
+  .interest__desc {
+    -webkit-line-clamp: 3;
+  }
 }
 
 @media (max-width: 1100px) {

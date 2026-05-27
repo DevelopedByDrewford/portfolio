@@ -80,7 +80,7 @@ function Home() {
         <p className="hero__lede">
           I build commerce, search, and gaming experiences on the web —
           currently shipping at Athos Commerce. I care about clean code,
-          kind teams, and design that respects the user.
+          interactive teams, and design that respects the user.
         </p>
         <div className="hero__cta">
           <a className="btn btn--primary" href={AndrewCookResume} download>
@@ -131,15 +131,15 @@ function Home() {
           </div>
           <div className="currently__item">
             <div className="currently__k">Reading</div>
-            <div className="currently__v">Anything Kiese Laymon, plus a stack of Stephen King to clear.</div>
+            <div className="currently__v">Kiese Laymon, Jaime Sabines, and Stephen King</div>
           </div>
           <div className="currently__item">
             <div className="currently__k">Watching</div>
-            <div className="currently__v">Whatever's in theaters — IMAX preferred.</div>
+            <div className="currently__v">I Love Boosters, The Drama, Obsession</div>
           </div>
           <div className="currently__item">
             <div className="currently__k">Listening</div>
-            <div className="currently__v">SiR, Ari Lennox, Tyler, the Creator.</div>
+            <div className="currently__v">Ari Lennox, Tyler, the Creator, Orion Sun</div>
           </div>
         </div>
       </div>

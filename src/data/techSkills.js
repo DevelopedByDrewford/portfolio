@@ -21,6 +21,7 @@ const skills = [
   { id: 20, name: 'Shopify',     img: 'https://i.imgur.com/Hq6wS9Q.png' },
   { id: 21, name: 'Magento',     img: 'https://i.imgur.com/dCcbpii.png' },
   { id: 22, name: 'BigCommerce', img: 'https://i.imgur.com/82GwWzj.png' },
+  { id: 23, name: 'Firebase',   img: 'https://raw.githubusercontent.com/danielcranney/readme-generator/main/public/icons/skills/firebase-colored.svg' },
 ];
 
 export default skills;
