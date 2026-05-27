@@ -2,7 +2,7 @@ const iconArray = [
     {
         id: 1,
         name: "GitHub",
-        link: "https://github.com/sleazycook",
+        link: "https://github.com/DevelopedByDrewford",
         icon: "https://i.imgur.com/cXbOLY5.png"
     },
     {
@@ -27,7 +27,7 @@ const iconArray = [
     {
         id: 4,
         name: "TikTok",
-        link: "https://www.tiktok.com/@sleazycook",
+        link: "https://www.tiktok.com/@developedbydrewford",
         icon: "https://i.imgur.com/yau5rNx.png"
     },
     {
@@ -39,7 +39,7 @@ const iconArray = [
     {
         id: 6,
         name: "Letterboxd",
-        link: "https://letterboxd.com/sleazycook/",
+        link: "https://letterboxd.com/DevByDrewford/",
         icon: "https://i.imgur.com/gEucxoX.png"
     }
 ]

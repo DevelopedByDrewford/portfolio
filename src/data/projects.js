@@ -8,7 +8,7 @@ const projects = [
         blurb: "Drew's Houston Spots is my own guide to all my favorite places in Houston, Texas.  Featuring restaurants, attractions, bars & lounges, bookstore & libraries, coffee shops, tea & boba shops, drive through daiquiris, markets, museums, music venues, parks, hidden photo locations, movie theaters and more.  Explore maps, neighborhoods, & more in my own personal definitive guide to this city.",
         highlights: ['Interactive Leaft Map', 'List View', 'Neighborhood View'],
         stack: ['React.js', 'HTML 5', 'CSS 3', 'Git', 'Netlify'],
-        img: 'https://i.imgur.com/UlG1G58.png'
+        img: 'https://i.imgur.com/UlG1G58.png',
     },
     {
         id: 1,
