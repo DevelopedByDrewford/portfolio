@@ -14,8 +14,8 @@ const experience = [
     ],
     stack: ['JavaScript', 'Preact', 'HTML5', 'CSS3', 'Groovy', 'AWS', 'Shopify', 'Magento', 'BigCommerce', 'Git'],
     images: [
-      { src: 'https://media.licdn.com/dms/image/sync/v2/D5627AQH6y_4QArUCVQ/articleshare-shrink_800/B56ZgMOnm4HsAQ-/0/1752551816114?e=1755187200&v=beta&t=WBbveNWT2EDOn_ZX-COGuuVNsExLZNH8yOZAGNEkNV0', alt: 'Athos website' },
-      { src: 'https://media.licdn.com/dms/image/sync/v2/D4E27AQEky8ms02K71A/articleshare-shrink_800/B4EZhRSkawGYAI-/0/1753710479546?e=1755187200&v=beta&t=b6cm0u94DOXag9NOcJ3p8uv9JXwAvEmLine9DNAoFmE', alt: 'Athos generative discovery' },
+      { src: 'https://i.imgur.com/Ej8Eaks.png', alt: 'Athos website' },
+      { src: 'https://i.imgur.com/m6e88t8.png', alt: 'Athos generative discovery' },
     ],
   },
   {
