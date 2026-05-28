@@ -41,7 +41,7 @@ const projects = [
     blurb: "A team-built clone of a streaming platform with original design choices. We built the entire back end from scratch, created a custom data set, and shipped a fully homegrown system end-to-end.",
     highlights: ['Stunning Front End', 'Authentication', 'Hashmap Database'],
     stack: ['JavaScript', 'HTML5', 'PostgreSQL', 'Node.js', 'React', 'Sass', 'Netlify', 'Render'],
-    img: 'https://i.imgur.com/t4KGF2E.png',
+    img: 'https://i.imgur.com/YieIROC.png',
   },
   {
     id: 4,
