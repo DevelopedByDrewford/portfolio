@@ -8,7 +8,7 @@ const projects = [
     blurb: "My own guide to all my favorite places in Houston, Texas — restaurants, bars, bookstores, coffee shops, music venues, parks, hidden photo spots, and more. Explore by neighborhood, map, or list.",
     highlights: ['Interactive Leaflet Map', 'List View', 'Neighborhood View'],
     stack: ['React', 'HTML5', 'CSS3', 'Firebase', 'Git', 'Netlify'],
-    img: 'https://i.imgur.com/UlG1G58.png',
+    img: 'https://i.imgur.com/bSTXzmH.png',
   },
   {
     id: 1,
