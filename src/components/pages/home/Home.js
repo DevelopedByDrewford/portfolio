@@ -1,9 +1,26 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { doc, onSnapshot } from 'firebase/firestore'
 import Icon from '../../components/Icon'
 import SkillChip from '../../components/SkillChip'
 import skillGroups from '../../../data/skillGroups'
+import { HOME_CONTENT_DEFAULTS } from '../../../data/homeContent'
 import AndrewCookResume from '../../../data/AndrewCookResume.pdf'
+import { db } from '../../../firebase'
+
+function useHomeContent() {
+  const [content, setContent] = useState(HOME_CONTENT_DEFAULTS)
+
+  useEffect(() => {
+    return onSnapshot(doc(db, 'content', 'home'), snap => {
+      if (snap.exists()) {
+        setContent({ ...HOME_CONTENT_DEFAULTS, ...snap.data() })
+      }
+    })
+  }, [])
+
+  return content
+}
 
 // Fonts to spin through before landing — all system-safe so no load delay
 const CYCLE_FONTS = [
@@ -57,6 +74,7 @@ function useNameFontCycle() {
 function Home() {
   const navigate = useNavigate()
   const { font, done } = useNameFontCycle()
+  const content = useHomeContent()
 
   return (
     <section className="page">
@@ -78,14 +96,18 @@ function Home() {
           Software engineer.
         </h1>
         <p className="hero__lede">
-          I build commerce, search, and gaming experiences on the web —
-          currently shipping at Athos Commerce. I care about CI/CD,
-          engaging teams, and design that respects the user.
+          {content.heroLede}
         </p>
         <div className="hero__cta">
-          <a className="btn btn--primary" href={AndrewCookResume} download>
-            <Icon name="download" size={16} /> Download résumé
-          </a>
+          {content.resumeUrl ? (
+            <a className="btn btn--primary" href={content.resumeUrl} target="_blank" rel="noreferrer">
+              <Icon name="download" size={16} /> Download résumé
+            </a>
+          ) : (
+            <a className="btn btn--primary" href={AndrewCookResume} download>
+              <Icon name="download" size={16} /> Download résumé
+            </a>
+          )}
           <button className="btn btn--ghost" onClick={() => navigate('/projects')}>
             See projects <Icon name="arrow" size={16} />
           </button>
@@ -123,23 +145,23 @@ function Home() {
           <div className="currently__item">
             <div className="currently__k">Working</div>
             <div className="currently__v">
-              Software Engineer at{' '}
-              <a href="https://athoscommerce.com" target="_blank" rel="noreferrer">
-                Athos Commerce
+              {content.working.title} at{' '}
+              <a href={content.working.link} target="_blank" rel="noreferrer">
+                {content.working.label}
               </a>
             </div>
           </div>
           <div className="currently__item">
             <div className="currently__k">Reading</div>
-            <div className="currently__v">Kiese Laymon, Jaime Sabines, and Stephen King</div>
+            <div className="currently__v">{content.reading}</div>
           </div>
           <div className="currently__item">
             <div className="currently__k">Watching</div>
-            <div className="currently__v">I Love Boosters, The Drama, Obsession</div>
+            <div className="currently__v">{content.watching}</div>
           </div>
           <div className="currently__item">
             <div className="currently__k">Listening</div>
-            <div className="currently__v">Ari Lennox, Tyler, the Creator, Orion Sun</div>
+            <div className="currently__v">{content.listening}</div>
           </div>
         </div>
       </div>

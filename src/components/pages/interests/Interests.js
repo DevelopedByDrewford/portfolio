@@ -1,7 +1,22 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { createPortal } from 'react-dom'
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Icon from '../../components/Icon'
-import interests from '../../../data/interests'
+import staticInterests from '../../../data/interests'
+import { db } from '../../../firebase'
+
+function useInterests() {
+  const [liveInterests, setLiveInterests] = useState(null)
+
+  useEffect(() => {
+    const q = query(collection(db, 'interests'), orderBy('order'))
+    return onSnapshot(q, snap => {
+      setLiveInterests(snap.docs.map(d => ({ id: d.id, ...d.data() })))
+    })
+  }, [])
+
+  return liveInterests && liveInterests.length > 0 ? liveInterests : staticInterests
+}
 
 /* ── Modal ─────────────────────────────────────────────────────────────── */
 function InterestModal({ item, onClose }) {
@@ -99,6 +114,7 @@ function InterestCard({ item, onReadMore }) {
 
 /* ── Page ──────────────────────────────────────────────────────────────── */
 function Interests() {
+  const interests = useInterests()
   const [modalItem, setModalItem] = useState(null)
   const closeModal = useCallback(() => setModalItem(null), [])
 

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 
 import Sidebar from './Sidebar.js'
+import CommandPalette from './CommandPalette.js'
 import Icon from '../components/components/Icon'
 
 import '../styles/app/app.css'
@@ -52,6 +53,7 @@ function App() {
       </header>
 
       <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} />
+      <CommandPalette />
 
       <main className="main" ref={scroller}>
         <div className="main__inner">

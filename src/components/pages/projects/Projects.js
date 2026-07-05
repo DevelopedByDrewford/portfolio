@@ -1,6 +1,22 @@
+import { useState, useEffect } from 'react'
+import { collection, query, orderBy, onSnapshot } from 'firebase/firestore'
 import Icon from '../../components/Icon'
 import SkillChip from '../../components/SkillChip'
-import projects from '../../../data/projects'
+import staticProjects from '../../../data/projects'
+import { db } from '../../../firebase'
+
+function useProjects() {
+  const [liveProjects, setLiveProjects] = useState(null)
+
+  useEffect(() => {
+    const q = query(collection(db, 'projects'), orderBy('order'))
+    return onSnapshot(q, snap => {
+      setLiveProjects(snap.docs.map(d => ({ id: d.id, ...d.data() })))
+    })
+  }, [])
+
+  return liveProjects && liveProjects.length > 0 ? liveProjects : staticProjects
+}
 
 function ProjectCard({ proj }) {
   return (
@@ -57,6 +73,8 @@ function ProjectCard({ proj }) {
 }
 
 function Projects() {
+  const projects = useProjects()
+
   return (
     <section className="page">
       <header className="page__head">

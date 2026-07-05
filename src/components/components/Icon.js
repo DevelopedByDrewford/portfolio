@@ -123,6 +123,13 @@ function Icon({ name, size = 18 }) {
           <line x1="3" y1="18" x2="21" y2="18" />
         </svg>
       );
+    case "search":
+      return (
+        <svg {...props}>
+          <circle cx="11" cy="11" r="7" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      );
     case "close":
       return (
         <svg {...props}>

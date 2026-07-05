@@ -45,6 +45,7 @@ const skills = [
   { id: 41, name: 'Notion',        img: 'https://cdn.simpleicons.org/notion' },
   { id: 42, name: 'Stripe',        img: 'https://cdn.simpleicons.org/stripe' },
   { id: 43, name: 'CI/CD',         img: 'https://cdn.simpleicons.org/githubactions' },
+  { id: 44, name: 'SmugMug API',   img: 'https://cdn.simpleicons.org/smugmug' }
 ];
 
 export default skills;

@@ -4,7 +4,7 @@ function SkillChip({ name }) {
   const skill = skills.find(s => s.name === name);
   return (
     <span className="chip">
-      {skill && <img src={skill.img} alt="" />}
+      {skill && <img src={skill.img} alt={skill.name} />}
       <span>{name}</span>
     </span>
   );
