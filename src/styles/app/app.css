@@ -1416,3 +1416,36 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
   gap: 4px;
   flex: none;
 }
+
+/* ─── SKELETON LOADERS ───────────────────────────────────────────────────── */
+@keyframes skel-pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+.skel {
+  background: var(--bg-2);
+  border-radius: var(--r-sm);
+  animation: skel-pulse 1.5s ease-in-out infinite;
+}
+
+.proj-skel__body { padding: var(--space-4); display: flex; flex-direction: column; gap: 10px; }
+.proj-skel__tag { width: 90px; height: 11px; }
+.proj-skel__title { width: 65%; height: 24px; margin-top: 2px; }
+.proj-skel__line { height: 14px; }
+.proj-skel__line--full { width: 100%; }
+.proj-skel__line--lg { width: 90%; }
+.proj-skel__line--md { width: 70%; }
+.proj-skel__chips { display: flex; gap: 8px; margin-top: 4px; }
+.proj-skel__chip { width: 80px; height: 24px; border-radius: var(--r-pill); }
+
+.interest-skel__body { padding: var(--space-4); display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.interest-skel__title { width: 60%; height: 20px; }
+.interest-skel__line { height: 13px; }
+.interest-skel__line--full { width: 100%; }
+.interest-skel__line--lg { width: 85%; }
+.interest-skel__line--md { width: 50%; }
+.interest-skel__link { width: 120px; height: 13px; margin-top: 6px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skel { animation: none; }
+}

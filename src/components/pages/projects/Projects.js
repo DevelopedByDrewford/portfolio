@@ -6,16 +6,39 @@ import staticProjects from '../../../data/projects'
 import { db } from '../../../firebase'
 
 function useProjects() {
-  const [liveProjects, setLiveProjects] = useState(null)
+  const [state, setState] = useState({ loading: true, liveProjects: null })
 
   useEffect(() => {
     const q = query(collection(db, 'projects'), orderBy('order'))
-    return onSnapshot(q, snap => {
-      setLiveProjects(snap.docs.map(d => ({ id: d.id, ...d.data() })))
-    })
+    return onSnapshot(
+      q,
+      snap => setState({ loading: false, liveProjects: snap.docs.map(d => ({ id: d.id, ...d.data() })) }),
+      () => setState({ loading: false, liveProjects: null })
+    )
   }, [])
 
-  return liveProjects && liveProjects.length > 0 ? liveProjects : staticProjects
+  const { loading, liveProjects } = state
+  return { loading, projects: liveProjects && liveProjects.length > 0 ? liveProjects : staticProjects }
+}
+
+function ProjectCardSkeleton() {
+  return (
+    <div className="proj" aria-hidden="true">
+      <div className="proj__media skel" />
+      <div className="proj-skel__body">
+        <div className="skel proj-skel__tag" />
+        <div className="skel proj-skel__title" />
+        <div className="skel proj-skel__line proj-skel__line--full" />
+        <div className="skel proj-skel__line proj-skel__line--lg" />
+        <div className="skel proj-skel__line proj-skel__line--md" />
+        <div className="proj-skel__chips">
+          <div className="skel proj-skel__chip" />
+          <div className="skel proj-skel__chip" />
+          <div className="skel proj-skel__chip" />
+        </div>
+      </div>
+    </div>
+  )
 }
 
 function ProjectCard({ proj }) {
@@ -73,7 +96,7 @@ function ProjectCard({ proj }) {
 }
 
 function Projects() {
-  const projects = useProjects()
+  const { loading, projects } = useProjects()
 
   return (
     <section className="page">
@@ -82,7 +105,9 @@ function Projects() {
         <p className="page__lede">Solo builds, group sprints, and a few stories I wanted to tell in code.</p>
       </header>
       <div className="projects">
-        {projects.map(p => <ProjectCard key={p.id} proj={p} />)}
+        {loading
+          ? Array.from({ length: 3 }, (_, i) => <ProjectCardSkeleton key={i} />)
+          : projects.map(p => <ProjectCard key={p.id} proj={p} />)}
       </div>
     </section>
   )

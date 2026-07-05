@@ -6,16 +6,34 @@ import staticInterests from '../../../data/interests'
 import { db } from '../../../firebase'
 
 function useInterests() {
-  const [liveInterests, setLiveInterests] = useState(null)
+  const [state, setState] = useState({ loading: true, liveInterests: null })
 
   useEffect(() => {
     const q = query(collection(db, 'interests'), orderBy('order'))
-    return onSnapshot(q, snap => {
-      setLiveInterests(snap.docs.map(d => ({ id: d.id, ...d.data() })))
-    })
+    return onSnapshot(
+      q,
+      snap => setState({ loading: false, liveInterests: snap.docs.map(d => ({ id: d.id, ...d.data() })) }),
+      () => setState({ loading: false, liveInterests: null })
+    )
   }, [])
 
-  return liveInterests && liveInterests.length > 0 ? liveInterests : staticInterests
+  const { loading, liveInterests } = state
+  return { loading, interests: liveInterests && liveInterests.length > 0 ? liveInterests : staticInterests }
+}
+
+function InterestCardSkeleton() {
+  return (
+    <div className="interest" aria-hidden="true">
+      <div className="interest__media skel" />
+      <div className="interest-skel__body">
+        <div className="skel interest-skel__title" />
+        <div className="skel interest-skel__line interest-skel__line--full" />
+        <div className="skel interest-skel__line interest-skel__line--lg" />
+        <div className="skel interest-skel__line interest-skel__line--md" />
+        <div className="skel interest-skel__link" />
+      </div>
+    </div>
+  )
 }
 
 /* ── Modal ─────────────────────────────────────────────────────────────── */
@@ -114,7 +132,7 @@ function InterestCard({ item, onReadMore }) {
 
 /* ── Page ──────────────────────────────────────────────────────────────── */
 function Interests() {
-  const interests = useInterests()
+  const { loading, interests } = useInterests()
   const [modalItem, setModalItem] = useState(null)
   const closeModal = useCallback(() => setModalItem(null), [])
 
@@ -126,9 +144,11 @@ function Interests() {
       </header>
 
       <div className="interests">
-        {interests.map(item => (
-          <InterestCard key={item.id} item={item} onReadMore={setModalItem} />
-        ))}
+        {loading
+          ? Array.from({ length: 6 }, (_, i) => <InterestCardSkeleton key={i} />)
+          : interests.map(item => (
+            <InterestCard key={item.id} item={item} onReadMore={setModalItem} />
+          ))}
       </div>
 
       {modalItem && <InterestModal item={modalItem} onClose={closeModal} />}
