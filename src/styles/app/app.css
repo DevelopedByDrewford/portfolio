@@ -1396,6 +1396,25 @@ hr.rule { border: 0; height: 1px; background: var(--border); margin: var(--space
   gap: var(--space-3);
 }
 
+.manage-project__thumb {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manage-project__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.manage-project__thumb-empty {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted-2);
+}
+
 .manage-project__name {
   flex: 1;
   font-family: var(--font-sans);

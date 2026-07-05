@@ -72,6 +72,11 @@ function InterestRow({ interest, isFirst, isLast, onMove, onDelete }) {
   return (
     <form className="manage-project" onSubmit={handleSave}>
       <div className="manage-project__head">
+        <div className="manage-project__thumb">
+          {form.img
+            ? <img src={form.img} alt="" />
+            : <span className="manage-project__thumb-empty">{(form.name || '?').charAt(0).toUpperCase()}</span>}
+        </div>
         <input
           className="manage-project__name"
           type="text"
